@@ -3,8 +3,6 @@ module Network.Cloudprint (
   addPrintJob
 )where
 
-import           Network.Cloudprint.Internal
-
 import           Control.Monad.IO.Class
 import           Data.ByteString
 import qualified Data.ByteString.Char8                 as B8
@@ -39,7 +37,7 @@ formData printerId contentType name fn conts = formDataBody [
                   , partFileRequestBody "content" fn $ RequestBodyBS conts                --  file
                    ]
 
-
+-- | Add a print job to a given oauth session on google print
 addPrintJob :: OAuth2Client
             -> FilePath         -- ^ Filepath for the Oauth token 
             -> PrinterId        -- ^ Cloudprint ID for the printer
